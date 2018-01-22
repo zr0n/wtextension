@@ -26,10 +26,10 @@ int main(int argc, char * argsv[]){
 
 
 string getExtension(string filename){
-	regex rgx (".*\\.(.*)$");
+	regex rgx (".*(\\..*)$");
 	smatch match;
 	if(regex_search(filename, match, rgx)){
-		return match[1];
+		return strtoupper(match[1]);
 	}
 	else{
 		throw NoExtensionException();
@@ -47,7 +47,7 @@ int showExtensionInfo(string filename){
 	}
 	try{
 		string extensionInfo = getExtensionInfo(extension);
-		cout << endl << extension << ':' << endl << extensionInfo << endl;
+		cout << extension << ':' << endl << extensionInfo << endl;
 	}
 	catch(NoInformationException e){
 		return error(ERR_NO_INFORMATION_FOUND);
@@ -70,4 +70,12 @@ string getExtensionInfo(string extension){
 		throw NoInformationException();
 	}
 	return iterator->second;
+}
+
+string strtoupper(string str){
+    int leng=str.length();
+    for(int i=0; i<leng; i++)
+        if (97<=str[i]&&str[i]<=122)//a-z
+            str[i]-=32;
+    return str;
 }

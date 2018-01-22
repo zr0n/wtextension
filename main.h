@@ -24,3 +24,4 @@ int error(int errorId);
 int showExtensionInfo(string filename);
 string getExtension(string filename);
 string getExtensionInfo(string extension);
+string strtoupper(string str);
